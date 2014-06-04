@@ -3,6 +3,7 @@ HirarchicalMenu
 I used the following samples & FWs:
 
 a working version on my AWS server - http://54.186.96.106/menu/
+
 1. Bootstrap 3.1.1. for the basic styles to avoid mobile view. I customized it to avoid from collapsing menu on narrow view.
 I guess I could do without it but I am used to start with it.
 I did not implement css pre-compiler (like LESS), but hard coded the values in the css, if taking this one into production, I would do that to make the maintenance easier.
