@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" \>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hirarchical Menu</title>
+
+    <!-- Bootstrap -->
+	
+	<link href="bootstrap-3.1.1/css/bootstrap.css" rel="stylesheet">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="bootstrap-3.1.1/css/bootstrap-theme.min.css">
+	
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<link rel="stylesheet" href="css/menu.css">
+	  
+ 	<script src="lib/angular.js"></script>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	  
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="bootstrap-3.1.1/js/bootstrap.min.js"></script>
+	  
+	<script src="js/menuCTL.js"></script>
+	  
+	</head>
+	<body>
+		<div ng-app="menuAngular" ng-controller="menuControler" class=mainPadding>		
+			<nav id=nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+				<ul class="nav navbar-nav">
+					<!-- ng-repeat for the 1st level menu -->		
+					<li data-level=1 ng-repeat="menu1 in menuIntems | filter:{parent:0}"><a href="#" class="zz-top-navigatio-menu-text">{{menu1.name}}</a>
+
+						<!-- UL Container for the 2nd level menu items -->
+						<ul ng-if="menu1.HasChild" data-parent-id="{menu1.id}" class="nav zz-bubble zz-top-speech zz-menu-hidden">
+
+							<!-- ng-repeat for the 2nd level menus: -->		
+							<li data-level=2 ng-repeat="menu2 in menuIntems | filter:{parent:menu1.id}" class="zz-parent-menu zz-submenu-right-padding">
+								<div data-id="{{menu2.id}}" class="zz-submenu" ng-class="$last ? '' : 'zz-submenu_underline'">{{menu2.name}}</div>
+
+								<!-- UL Container for the 3rd level menu items :-->
+								<ul ng-if="menu2.HasChild" data-parent-id="{menu2.id}" class="nav zz-bubble zz-left-speech zz-menu-hidden">
+
+									<!-- ng-repeat for the 3rd level menu: -->		
+									<li data-level=3 ng-repeat="menu3 in menuIntems | filter:{parent:menu2.id}" class="zz-parent-menu  zz-submenu-right-padding">
+										<div data-id="{{menu3.id}}" class="zz-submenu " ng-class="$last ? '' : 'zz-submenu_underline'">{{menu3.name}}</div>
+
+										<!-- ul Container for the 4th level menu items :-->
+										<ul ng-if="menu3.HasChild" data-parent-id="{menu3.id}" class="nav zz-bubble zz-left-speech zz-menu-hidden">
+											<!-- ng-repeat for the 4th level menu: -->
+											<li data-level=4 ng-repeat="menu4 in menuIntems | filter:{parent:menu3.id}" class="zz-parent-menu">
+												<div data-id="{{menu4.id}}" class="zz-submenu" ng-class="$last ? '' : 'zz-submenu_underline'">{{menu4.name}}</div>
+												
+											</li> <!-- end of ng-repeat for the 4th level menu: -->
+										</ul> <!-- CLosing ul Container for the eth level menu items-->
+
+									</li>
+								</ul> <!-- CLosing ul Container for the 3rd level menu items-->
+
+
+							</li><!-- closing li of the 2nd level menu item-->
+						</ul> <!--  UL closing div of the 2nd level menu div container-->		
+
+					</li><!-- end of ng-repeat for the 1st level menu -->		
+				</ul>
+			</nav>
+		</div> <!-- ng-app div -->			
+	</body>
+</html>

@@ -1,0 +1,161 @@
+/* 
+The following classes are added to match the hirarchical menu behavoiur
+Thera are 2 kind of classes:
+	* classes related to the speech bubble  - those have the zz-buuble prefix  
+	* classes related to specific Text & color that overides bootstrap
+Since Bootstrap FW is used, all custome CSS had the prefix of zz- to diffrentiate own classes 
+
+*/
+
+
+/* zz-top-menu-* classes are controling the banner menu items and overiding some bootstrap behavoiurs */
+
+/* Matching the top navigation bar text style and border */
+.zz-top-navigatio-menu-text{
+	color:white !important; /*important Needed to overide bootstrap hover effect*/
+	text-transform:uppercase;
+	font-weight: bold;
+	border-right-color: gray;
+	border-right-width: 2px;
+	border-right-style: groove;		
+}
+
+/*Active (hover) top menu items style*/
+.zz-top-menu-selected{
+	background-color: black;
+}
+
+/* End of zz-top-menu-* classes */
+
+/* identify all of the parent menus - menus that have sub menus & overide any hover given by bootstrap to make it color:white */
+.zz-parent-menu:hover{
+    color:white !important;
+}
+
+/*initial state for all sub menus as hidden*/
+.zz-menu-hidden{
+	display: none;
+}
+
+
+/*sub menu classes*/
+
+/* some padidng for the sub menus*/
+.zz-submenu{
+	padding-top: 10px;
+	padding-bottom: 3px;
+	width: 135px;
+}
+
+/* underline the sub menu texts, ahgular last is used not to underline the last one*/
+.zz-submenu_underline{
+	border-bottom-color: white;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+}
+
+/*this extra padding is used to allow the hover of the li to span to the right over the bubble width*/
+.zz-submenu-right-padding{
+	padding-right: 160px;
+}
+
+/*end of sub menu classes*/
+
+
+
+
+/* Bubbles are the element 'speech' addition added with  
+/* Bubble top is first sub menu with the trianagle on the top nd bubble left are those for the 3rd and 4th menu levels
+
+/*positioning the first sub menu items 65 pixels after top:*/
+
+/* sub menu container classes
+* zz-bubble is the base clasee for all sub menus ULs
+* zz-top & zz-left are css selectoer to position the bubble and its speech element on the rop & left side
+Some constants used (better used with less variable):
+	The bubble width is 160 px
+	The speech size 12px
+	extra gap between the menus 5px
+*/
+/* the base class for bubble menus - with fixed Width & Shdow */
+.zz-bubble 
+{
+	color:#adaaaa ;
+	position: absolute;
+	width: 160px;
+	background-color: #494848;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+	padding-left: 10px;
+	z-index: 1000000;
+	-moz-box-shadow:    3px 3px 0px 0px #9E9D9D;
+	-webkit-box-shadow: 3px 3px 0px 0px #9E9D9D;
+	box-shadow:         3px 3px 0px 0px #9E9D9D;
+}
+
+.zz-bubble.zz-top-speech{
+	top:65px; /*60 px for the top menu height and 5 gap as on the UI spec*/
+
+}
+
+/* this one is important it extend the bubble the element, so even if the user mouse over in the gap, it is not hidden*/
+.zz-bubble.zz-top-speech:before {
+	content: '';
+	position: absolute;
+	width: 160px;
+	height: 17px; /*12+5 --> 12 for the speech and 5 for the gap*/
+	z-index: -1;
+	top: -17px;
+	left: 0px;
+}
+
+
+/*Creating the speech bubble at the top*/
+.zz-bubble.zz-top-speech:after 
+{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 0px 10px 12px 1px;
+	border-color: #494848 transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	top: -12px;
+	left: 0px;
+}
+
+/*positioning the 2nd level menus*/
+.zz-bubble.zz-left-speech{
+	left:166px; /*160+1+5 --> 160 for the width, 1 for the shadow  and extra 5 for some gap. todo: better understand this one ...*/  
+	top:0px;
+}
+
+/*extendending the element, so even if the user mouse over in the gap, it is not hidden*/
+.zz-bubble.zz-left-speech:before {
+	content: '';
+	position: absolute;
+	width: 12px;
+	height: 160px;
+	z-index: -1;
+	top: 0px;
+	left: -12px;
+}
+
+/*Creating the speech bubble at the left*/
+.zz-bubble.zz-left-speech:after 
+{
+	content: '';
+	position: absolute;
+	border-style: solid;
+	border-width: 10px 0px 0px 12px;
+	border-color: #494848 transparent;
+	display: block;
+	width: 0;
+	z-index: 1;
+	top: 0px;
+	left: -12px;
+}
