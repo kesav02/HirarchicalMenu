@@ -14,3 +14,11 @@ I did not implement css pre-compiler (like LESS), but hard coded the values in t
 I had to create another Pseudo elements myself so the Sub menu is not closed when hovering on the space between the menu. I guess this was the tricky part :-)
 
 4. Basic menu logic and structure is taken from a nice tutorial I found - http://www.kriesi.at/archives/create-a-multilevel-dropdown-menu-with-css-and-improve-it-via-jquery
+
+Angular Implementation:
+1. Data Provider is done as a Factory (data_provider.js)
+2. A Service implementing proise interface is used for manipulaing the data (service_provider.js)
+3. Recursive Directive (menu_directive) is used to draw the menu.
+
+Note that recirsive direvtive may not be the best implementation as requires havy DOM manipulation.
+Moving forward, need to use the Angular template cache to keep the HTML structure.Linda_0nline 

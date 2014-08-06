@@ -1,0 +1,1 @@
+var menuAngularApp = angular.module('menuAngularApp', ['menuServiceProvider', 'menuControllers', 'menuDirective']);
